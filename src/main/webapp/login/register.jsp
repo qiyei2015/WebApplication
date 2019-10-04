@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.qiyei.common.CommonConstant" %><%--
   Created by IntelliJ IDEA.
   User: daner
   Date: 2019/10/4
@@ -22,8 +22,20 @@
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
                 + request.getContextPath() + "/";
         System.out.println("basePath:" + basePath);
+
+        String msg = "";
+        if(request.getAttribute(CommonConstant.KEY_MESSAGE)!=null){
+            msg = (String)request.getAttribute(CommonConstant.KEY_MESSAGE);
+        }
     %>
-    <form action="<%=basePath%>RegisterServlet" method="post">
+    <!--
+    文件上传的条件
+    * 表单必须是post提交方式
+    * 表单中必须有文件上传项，文件上传项必须有name属性和值
+    * 表单的enctype属性必须设置为multipart/form-data
+ -->
+    <h3><span style="color: red; "><%= msg %></span></h3>
+    <form action="<%=basePath%>RegisterServlet" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td class="td1">用户名</td>

@@ -14,6 +14,14 @@ public class User {
     private String hobby;
     private String iconPath;
 
+    public User(String userName, String password, String nickname, String sex, String hobby, String iconPath) {
+        this.userName = userName;
+        this.password = password;
+        this.nickname = nickname;
+        this.sex = sex;
+        this.hobby = hobby;
+        this.iconPath = iconPath;
+    }
 
     public String getUserName() {
         return userName;
@@ -61,5 +69,17 @@ public class User {
 
     public void setIconPath(String iconPath) {
         this.iconPath = iconPath;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", hobby='" + hobby + '\'' +
+                ", iconPath='" + iconPath + '\'' +
+                '}';
     }
 }
