@@ -30,6 +30,19 @@ public class LoginServlet extends HttpServlet {
 
         LogUtils.println(TAG,"account:" + account);
         LogUtils.println(TAG,"password:" + password);
+
+        if ("101".equals(account) && "123456".equals(password)){
+            //1 使用转发实现
+            //request.getRequestDispatcher("/login/success.jsp").forward(request,response);
+            //2 使用重定向实现
+            response.sendRedirect("/WebApplication/success.jsp");
+        }else {
+            //1 使用转发实现
+            //request.getRequestDispatcher("/login/fail.jsp").forward(request,response);
+            //2 使用重定向实现
+            response.sendRedirect("/WebApplication/login/fail.jsp");
+        }
+
     }
 
     @Override

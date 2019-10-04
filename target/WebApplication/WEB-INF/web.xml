@@ -41,7 +41,7 @@
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <!-- / 代表服务器根路径-->
-    <url-pattern>/login2</url-pattern>
+    <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Demo3Servlet</servlet-name>
