@@ -9,8 +9,23 @@
 <html>
 <head>
     <title>登录成功</title>
+    <link rel="stylesheet" href="./../css/login.css">
 </head>
 <body>
-<h3 align="center">登录成功</h3>
+    <div class="login">
+        <div class="header">
+            <h1>登录成功</h1>
+        </div>
+        <div class="content">
+            <table align="center">
+                <tr>
+                    <td align="center"><img src="./../img/pic01.jpg"></td>
+                </tr>
+                <tr>
+                    <td align="center">欢迎xxx,登录成功!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

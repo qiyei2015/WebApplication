@@ -1,8 +1,5 @@
 package com.qiyei.servlet;
 
-import com.qiyei.utils.LogUtils;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,18 +13,16 @@ import java.io.IOException;
  * @email: 1273482124@qq.com
  * @description:
  */
-@WebServlet(value = "/Demo2Servlet")
-public class Demo2Servlet extends HttpServlet {
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
 
-    private static final String TAG = "Demo2Servlet";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext servletContext = getServletContext();
 
-        LogUtils.println(TAG,"servletContext,account:" + servletContext.getAttribute("account"));
     }
+
 }

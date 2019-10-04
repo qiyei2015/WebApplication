@@ -1,4 +1,4 @@
-package com.qiyei.javaweb;
+package com.qiyei.xml;
 
 import com.qiyei.xml.XmlManager;
 
