@@ -23,7 +23,15 @@
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.qiyei.servlet.LoginServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>Demo3Servlet</servlet-name>
+    <servlet-class>com.qiyei.servlet.Demo3Servlet</servlet-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>login</servlet-name>
     <url-pattern>/denglu.do</url-pattern>
@@ -35,5 +43,10 @@
     <!-- / 代表服务器根路径-->
     <url-pattern>/login2</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>Demo3Servlet</servlet-name>
+    <!-- / 代表服务器根路径-->
+    <url-pattern>/Demo3Servlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
