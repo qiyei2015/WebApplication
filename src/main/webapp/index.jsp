@@ -6,9 +6,6 @@
 <body>
 <h3 align="center">人事管理系统登录页面</h3>
 <hr>
-config对象：<%=config.getServletName()%>
-<br>
-config参数：<%=config.getInitParameter("age")%>
 <%
     request.setAttribute("name","qiyei2009");
     //进行页面请求分发
@@ -19,7 +16,7 @@ config参数：<%=config.getInitParameter("age")%>
     System.out.println("basePath:" + basePath);
 %>
 <!--from是表单 action代表了服务端的处理程序 可以是jsp也可以是servert-->
-<form action="<%=basePath%>login2" method="post">
+<form action="<%=basePath%>LoginServlet" method="post">
     <!--表格-->
     <table align="center">
         <!--表格 一行-->
