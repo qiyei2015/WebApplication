@@ -23,6 +23,6 @@ public class ELServlet extends HttpServlet {
         request.setAttribute("username","张三");
         request.setAttribute("age","28");
 
-        request.getRequestDispatcher("/showEL.jsp").forward(request,response);
+        request.getRequestDispatcher("/demo/showEL.jsp").forward(request,response);
     }
 }
