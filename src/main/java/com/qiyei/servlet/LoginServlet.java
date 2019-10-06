@@ -3,6 +3,7 @@ package com.qiyei.servlet;
 import com.qiyei.common.CommonConstant;
 import com.qiyei.domain.bean.User;
 import com.qiyei.utils.LogUtils;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -34,6 +35,8 @@ public class LoginServlet extends HttpServlet {
         LogUtils.println(TAG,"username:" + username + ",password:" + password);
         //从ServletContext域中获得保存用户信息集合
         List<User> list = (List<User>) getServletContext().getAttribute(CommonConstant.KEY_USER_LIST);
+
+        JSONObject jsonObject = new JSONObject("{flag:false}");
         for (User user :list){
             //判断用户名密码是否正确
             if (username.equals(user.getUserName()) && password.equals(user.getPassword())){
@@ -51,14 +54,13 @@ public class LoginServlet extends HttpServlet {
 
                 //将用户信息保存到session中
                 request.getSession().setAttribute(CommonConstant.KEY_USER,user);
-                response.sendRedirect(request.getContextPath()+"/login/success.jsp");
-                return;
+                jsonObject = new JSONObject("{flag:true}");
+               break;
             }
         }
 
-        // 登录失败:
-        request.setAttribute(CommonConstant.KEY_MESSAGE, "用户名或密码错误！");
-        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        //响应给客户端回复
+        response.getOutputStream().write(jsonObject.toString().getBytes("utf-8"));
     }
 
     @Override

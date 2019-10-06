@@ -11,6 +11,7 @@
 <head>
     <title>登录页面</title>
     <link rel="stylesheet" href="./../css/login.css">
+    <script type="text/javascript" src="../resources/js/jquery-1.4.2.js"></script>
 </head>
 <body>
 <%
@@ -43,7 +44,8 @@
             </h1>
         </div>
         <h3><span style="color: red; "><%=msg %></span></h3>
-        <form action="<%=basePath%>LoginServlet" method="post">
+        <span class="tip" style="color:red;font-size:16px"></span>
+        <form >
             <table>
                 <tr>
                     <td class="td1">用户名</td>
@@ -61,7 +63,7 @@
                     <!--colspan="2 表示横跨2列-->
                     <td colspan="2">
                         <div class="btn-red">
-                            <input type="submit" value="登录" id="login-btn">
+                            <input type="button" value="登录" id="login-btn">
                         </div>
                     </td>
                 </tr>
@@ -69,4 +71,31 @@
         </form>
     </div>
 </body>
+
+<script>
+    <!--使用id-->
+    $("#login-btn").click(function () {
+        //单击登录按钮的时候出发ajax事件
+        $.ajax({
+            url:"<%=basePath%>LoginServlet",
+            type:"post",
+            data:{
+                username:$("input[name=username]").val(),
+                password:$("input[name=password]").val()
+            },
+            dataType:"json",
+            success:function (result) {
+                let flag = result.flag;
+                if (flag == true){
+                    //成功则跳转成功页面
+                    window.location.href = "<%=basePath%>login/success.jsp"
+                } else {
+                    //失败则提示
+                    $(".tip").text("你输入的用户名密码不正确");
+                }
+            }
+        });
+    });
+</script>
+
 </html>
