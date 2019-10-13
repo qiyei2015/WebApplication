@@ -35,5 +35,15 @@
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
 
+  <!--配置filter-->
+  <filter>
+    <filter-name>UserLoginSessionFilter</filter-name>
+    <filter-class>com.qiyei.filter.UserLoginSessionFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>UserLoginSessionFilter</filter-name>
+    <url-pattern>/demo/*</url-pattern>
+  </filter-mapping>
 
 </web-app>
