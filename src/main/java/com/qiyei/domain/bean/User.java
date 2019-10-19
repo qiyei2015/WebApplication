@@ -7,6 +7,18 @@ package com.qiyei.domain.bean;
  * @description:
  */
 public class User {
+
+    public interface ${
+        String tableName = "users";
+        String id = "id";
+        String userName = "user_name";
+        String password = "password";
+        String nickname = "nick_name";
+        String sex = "sex";
+        String hobby = "hobby";
+        String iconPath = "icon_path";
+    }
+
     private String userName;
     private String password;
     private String nickname;

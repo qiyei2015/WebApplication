@@ -2,6 +2,7 @@ package com.qiyei.servlet;
 
 import com.qiyei.common.CommonConstant;
 import com.qiyei.domain.bean.User;
+import com.qiyei.domain.dao.UserDao;
 import com.qiyei.utils.LogUtils;
 import com.qiyei.utils.TextUtils;
 import com.qiyei.utils.UploadFileUtils;
@@ -121,6 +122,9 @@ public class RegisterServlet extends HttpServlet {
             User user = new User(map.get("username"),map.get("password"),map.get("nickname"),
                     map.get("sex"), map.get("hobby"),url);
             //将用户信息存储ServletContext中
+            UserDao userDao = new UserDao();
+            userDao.insert(user);
+
             userList.add(user);
             LogUtils.println(TAG,userList);
             getServletContext().setAttribute(CommonConstant.KEY_USER_LIST,userList);

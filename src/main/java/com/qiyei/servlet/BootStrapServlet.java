@@ -1,6 +1,7 @@
 package com.qiyei.servlet;
 
 import com.qiyei.common.CommonConstant;
+import com.qiyei.db.DBManager;
 import com.qiyei.domain.bean.User;
 
 import javax.servlet.ServletConfig;
@@ -30,5 +31,7 @@ public class BootStrapServlet extends HttpServlet {
         List<User> list = new ArrayList<>();
         //将list保存到ServletContext作用域中:
         getServletContext().setAttribute(CommonConstant.KEY_USER_LIST,list);
+        DBManager.getInstance();
+        System.out.println("BootStrapServlet start!");
     }
 }
