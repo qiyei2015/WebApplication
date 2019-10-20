@@ -22,7 +22,6 @@ public class DBManager {
     private static final String TAG = "DBManager";
     private static final String TABLE = "TABLE";
 
-    private static HikariConfig sHikariConfig;
     private static HikariDataSource sHikariDataSource;
     private static DBManager sManager;
 
@@ -45,6 +44,10 @@ public class DBManager {
         return sHikariDataSource;
     }
 
+    public Connection getConnection() throws SQLException{
+        return sHikariDataSource.getConnection();
+    }
+
     private void init(){
         // 如何获得属性文件的输入流？
         // 通常情况下使用类的加载器的方式进行获取：
@@ -52,9 +55,8 @@ public class DBManager {
             // 加载属性文件并解析：
             Properties props = new Properties();
             props.load(is);
-            sHikariConfig = new HikariConfig(props);
-            sHikariConfig.setMaximumPoolSize(10);
-            sHikariDataSource = new HikariDataSource(sHikariConfig);
+            HikariConfig config = new HikariConfig(props);
+            sHikariDataSource = new HikariDataSource(config);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +67,7 @@ public class DBManager {
         ResultSet rs = null;
         Connection connection = null;
         try {
-            connection = getDataSource().getConnection();
+            connection = getConnection();
             System.out.println("validateTableExist tableName:" + tableName);
             DatabaseMetaData meta = connection.getMetaData();
             String type[] = {TABLE};

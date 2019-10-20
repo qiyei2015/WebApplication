@@ -23,7 +23,7 @@ public class UserDao {
     private static void createUsers(){
         if (!DBManager.getInstance().validateTableExist(User.$.tableName)){
             PreparedStatement preparedStatement = null;
-            try (Connection connection = DBManager.getInstance().getDataSource().getConnection()){
+            try (Connection connection = DBManager.getInstance().getConnection()){
                 String createUsersSql = "create table " + User.$.tableName + "("
                         + User.$.id + " int(32) primary key not null auto_increment,"
                         + User.$.userName + " varchar(32) not null,"
@@ -49,7 +49,7 @@ public class UserDao {
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         try {
-            connection = DBManager.getInstance().getDataSource().getConnection();
+            connection = DBManager.getInstance().getConnection();
             String insertSql = "INSERT INTO " + User.$.tableName + "("
                     + User.$.userName + ","
                     + User.$.password + ","
