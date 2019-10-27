@@ -2,6 +2,7 @@ package com.qiyei.servlet;
 
 import com.qiyei.common.CommonConstant;
 import com.qiyei.domain.bean.User;
+import com.qiyei.domain.dao.UserDao;
 import com.qiyei.utils.LogUtils;
 import org.json.JSONObject;
 
@@ -33,9 +34,12 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         LogUtils.println(TAG,"username:" + username + ",password:" + password);
+
         //从ServletContext域中获得保存用户信息集合
         List<User> list = (List<User>) getServletContext().getAttribute(CommonConstant.KEY_USER_LIST);
-
+        if (list == null || list.size() == 0){
+            list = new UserDao().queryAll();
+        }
         JSONObject jsonObject = new JSONObject("{flag:false}");
         for (User user :list){
             //判断用户名密码是否正确

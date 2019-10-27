@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+mapper 用于定义一个映射配置文件的根节点
+namespace属性是用来配置命名空间，主要进行session级别的缓存管理
+命名空间默认情况下，使用我们当前操作的实体类的全路径
+-->
+<mapper namespace="com.qiyei.domain.bean.User">
+
+    <sql id="user_fields">
+        user_name, password, nick_name, sex, hobby, icon_path
+    </sql>
+
+    <!--查询-->
+    <select id="queryUser" resultMap="forUser">
+        select * from users
+        <if test="id != null">
+            where id = #{id}
+        </if>
+    </select>
+
+    <!--插入-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into users( <include refid="user_fields"></include>)
+        values(#{userName},#{password}, #{nickname}, #{sex}, #{hobby}, #{iconPath})
+    </insert>
+
+    <!--更新-->
+    <update id="updateUser">
+        update users
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="nickname != null">nick_name = #{nickname},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="hobby != null">hobby = #{hobby},</if>
+            <if test="iconPath != null">icon_path = #{iconPath},</if>
+        </set>
+          where id = #{id}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteUser">
+        delete from users where id = #{id}
+    </delete>
+
+    <!-- 自定义映射关系集合：主要包含对于一些自定义操作的配置，如不一致的属性和字段 -->
+    <resultMap id="forUser" type="com.qiyei.domain.bean.User">
+        <!-- 绑定id主键 -->
+        <id property="id" column="id"></id>
+        <!-- result配置，主要配置普通属性，column表示配置的是数据库字段名称 property配置的是实体类的属性名称 -->
+        <result column="user_name" property="userName"></result>
+        <result column="nick_name" property="nickname"></result>
+        <result column="icon_path" property="iconPath"></result>
+    </resultMap>
+</mapper>

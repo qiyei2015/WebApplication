@@ -18,13 +18,20 @@ public class User {
         String hobby = "hobby";
         String iconPath = "icon_path";
     }
-
+    private Integer id;
     private String userName;
     private String password;
     private String nickname;
     private String sex;
     private String hobby;
     private String iconPath;
+
+    public User() {
+    }
+
+    public User(Integer id) {
+        this.id = id;
+    }
 
     public User(String userName, String password, String nickname, String sex, String hobby, String iconPath) {
         this.userName = userName;
@@ -33,6 +40,16 @@ public class User {
         this.sex = sex;
         this.hobby = hobby;
         this.iconPath = iconPath;
+    }
+
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -86,7 +103,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", sex='" + sex + '\'' +
