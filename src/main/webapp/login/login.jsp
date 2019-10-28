@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>登录页面</title>
-    <link rel="stylesheet" href="./../css/login.css">
-    <script type="text/javascript" src="../resources/js/jquery-1.4.2.js"></script>
+    <link rel="stylesheet" href="./../lib/css/login.css">
+    <script type="text/javascript" src="../lib/js/jquery-1.4.2.js"></script>
 </head>
 <body>
 <%

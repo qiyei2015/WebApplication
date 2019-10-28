@@ -9,9 +9,9 @@
          id="WebApp_ID" version="3.0">
   <display-name>WebApplication</display-name>
 
-<!--  <welcome-file-list>-->
-<!--    <welcome-file>index.html</welcome-file>-->
-<!--  </welcome-file-list>-->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 
   <!--开启所有jsp页面的el表达式-->
   <jsp-config>

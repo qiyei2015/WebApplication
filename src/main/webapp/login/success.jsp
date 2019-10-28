@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>登录成功</title>
-    <link rel="stylesheet" href="./../css/login.css">
+    <link rel="stylesheet" href="./../lib/css/login.css">
 </head>
 <body>
 <%
