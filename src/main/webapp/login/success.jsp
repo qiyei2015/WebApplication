@@ -31,7 +31,7 @@
                     <td align="center"><img src="<%=imvPath%>"/></td>
                 </tr>
                 <tr>
-                    <td align="center">欢迎<%=user.getNickname()%>,登录成功!</td>
+                    <td align="center">欢迎<%=user.getNickName()%>,登录成功!</td>
                 </tr>
             </table>
         </div>

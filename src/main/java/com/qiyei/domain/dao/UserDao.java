@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,21 +19,27 @@ import java.util.List;
  */
 public class UserDao {
 
-
     static {
-        createUsers();
+        createTableUsers();
     }
 
-    private static void createUsers(){
+    private static void createTableUsers(){
         if (!DBManager.getInstance().validateTableExist(User.$.tableName)){
             PreparedStatement preparedStatement = null;
             try (Connection connection = DBManager.getInstance().getConnection()){
                 String createUsersSql = "create table " + User.$.tableName + "("
                         + User.$.id + " int primary key not null auto_increment,"
-                        + User.$.userName + " varchar(32) not null,"
+                        + User.$.userName + " varchar(50) not null,"
                         + User.$.password + " varchar(16) not null,"
-                        + User.$.nickname + " varchar(32) not null,"
-                        + User.$.sex + " varchar (16),"
+                        + User.$.nickName + " varchar(50) not null,"
+                        + User.$.gender + " varchar (5),"
+                        + User.$.phone + " varchar(20) ,"
+                        + User.$.email + " varchar(50) ,"
+                        + User.$.createTime + " TIMESTAMP not null,"
+                        + User.$.updateTime + " TIMESTAMP not null,"
+                        + User.$.lastLogin + " TIMESTAMP not null,"
+                        + User.$.userStatus + " int default 0,"
+                        + User.$.remark + " text ,"
                         + User.$.hobby + " varchar(32),"
                         + User.$.iconPath + " text"
                         + ");";
@@ -56,8 +63,8 @@ public class UserDao {
             String insertSql = "INSERT INTO " + User.$.tableName + "("
                     + User.$.userName + ","
                     + User.$.password + ","
-                    + User.$.nickname + ","
-                    + User.$.sex + ","
+                    + User.$.nickName + ","
+                    + User.$.gender + ","
                     + User.$.hobby + ","
                     + User.$.iconPath + ")"
                     + "VALUES (?,?,?,?,?,?)";
@@ -65,8 +72,8 @@ public class UserDao {
             preparedStatement = connection.prepareStatement(insertSql);
             preparedStatement.setString(1,user.getUserName());
             preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getNickname());
-            preparedStatement.setString(4,user.getSex());
+            preparedStatement.setString(3,user.getNickName());
+            preparedStatement.setString(4,user.getGender());
             preparedStatement.setString(5,user.getHobby());
             preparedStatement.setString(6,user.getIconPath());
             preparedStatement.execute();
@@ -105,6 +112,15 @@ public class UserDao {
     }
 
     public int insertUser(User user){
+        if (user.getCreateTime() == null){
+            user.setCreateTime(new Date());
+        }
+        if (user.getUpdateTime() == null){
+            user.setUpdateTime(new Date());
+        }
+        if (user.getLastLogin() == null){
+            user.setLastLogin(new Date());
+        }
         SqlSession session = DBUtils.getSession();
         int id = -1;
         try {

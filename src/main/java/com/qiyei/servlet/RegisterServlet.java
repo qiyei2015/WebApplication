@@ -119,11 +119,16 @@ public class RegisterServlet extends HttpServlet {
             }
 
             //封装数据
-            User user = new User(map.get("username"),map.get("password"),map.get("nickname"),
-                    map.get("sex"), map.get("hobby"),url);
+            User user = new User();
+            user.setUserName(map.get("username"));
+            user.setPassword(map.get("password"));
+            user.setNickName(map.get("nickname"));
+            user.setGender(map.get("sex"));
+            user.setHobby(map.get("hobby"));
+            user.setIconPath(url);
             //将用户信息存储ServletContext中
             UserDao userDao = new UserDao();
-            userDao.insert(user);
+            userDao.insertUser(user);
 
             userList.add(user);
             LogUtils.println(TAG,userList);

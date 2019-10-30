@@ -10,7 +10,7 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
 <mapper namespace="com.qiyei.domain.bean.User">
 
     <sql id="user_fields">
-        user_name, password, nick_name, sex, hobby, icon_path
+        user_name, password, nick_name,gender,phone,email,create_time,update_time,last_login,user_status,remark,hobby, icon_path
     </sql>
 
     <!--查询-->
@@ -23,8 +23,8 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
 
     <!--插入-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        insert into users( <include refid="user_fields"></include>)
-        values(#{userName},#{password}, #{nickname}, #{sex}, #{hobby}, #{iconPath})
+        insert into users(<include refid="user_fields"></include>)
+        values(#{userName},#{password}, #{nickName}, #{gender}, #{phone},#{email},#{createTime},#{updateTime},#{lastLogin},#{userStatus},#{remark},#{hobby}, #{iconPath})
     </insert>
 
     <!--更新-->
@@ -33,8 +33,8 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
         <set>
             <if test="userName != null">user_name = #{userName},</if>
             <if test="password != null">password = #{password},</if>
-            <if test="nickname != null">nick_name = #{nickname},</if>
-            <if test="sex != null">sex = #{sex},</if>
+            <if test="nickName != null">nick_name = #{nickName},</if>
+            <if test="gender != null">gender = #{gender},</if>
             <if test="hobby != null">hobby = #{hobby},</if>
             <if test="iconPath != null">icon_path = #{iconPath},</if>
         </set>
@@ -53,6 +53,10 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
         <!-- result配置，主要配置普通属性，column表示配置的是数据库字段名称 property配置的是实体类的属性名称 -->
         <result column="user_name" property="userName"></result>
         <result column="nick_name" property="nickname"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+        <result column="last_login" property="lastLogin"></result>
+        <result column="user_status" property="userStatus"></result>
         <result column="icon_path" property="iconPath"></result>
     </resultMap>
 </mapper>
