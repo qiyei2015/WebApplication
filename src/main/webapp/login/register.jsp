@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>注册</title>
-    <link rel="stylesheet" href="./../css/reg.css">
+    <link rel="stylesheet" href="../lib/css/reg.css">
 </head>
 <body>
 <div class="reg">
