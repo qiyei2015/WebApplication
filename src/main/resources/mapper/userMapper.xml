@@ -52,7 +52,7 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
         <id property="id" column="id"></id>
         <!-- result配置，主要配置普通属性，column表示配置的是数据库字段名称 property配置的是实体类的属性名称 -->
         <result column="user_name" property="userName"></result>
-        <result column="nick_name" property="nickname"></result>
+        <result column="nick_name" property="nickName"></result>
         <result column="create_time" property="createTime"></result>
         <result column="update_time" property="updateTime"></result>
         <result column="last_login" property="lastLogin"></result>

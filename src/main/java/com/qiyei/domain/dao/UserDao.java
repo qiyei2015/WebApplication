@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,12 +31,12 @@ public class UserDao {
                         + User.$.userName + " varchar(50) not null,"
                         + User.$.password + " varchar(16) not null,"
                         + User.$.nickName + " varchar(50) not null,"
-                        + User.$.gender + " varchar (5),"
+                        + User.$.gender + " varchar (10),"
                         + User.$.phone + " varchar(20) ,"
                         + User.$.email + " varchar(50) ,"
-                        + User.$.createTime + " TIMESTAMP not null,"
-                        + User.$.updateTime + " TIMESTAMP not null,"
-                        + User.$.lastLogin + " TIMESTAMP not null,"
+                        + User.$.createTime + " TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),"
+                        + User.$.updateTime + " TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),"
+                        + User.$.lastLogin + " TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),"
                         + User.$.userStatus + " int default 0,"
                         + User.$.remark + " text ,"
                         + User.$.hobby + " varchar(32),"
@@ -112,15 +111,15 @@ public class UserDao {
     }
 
     public int insertUser(User user){
-        if (user.getCreateTime() == null){
-            user.setCreateTime(new Date());
-        }
-        if (user.getUpdateTime() == null){
-            user.setUpdateTime(new Date());
-        }
-        if (user.getLastLogin() == null){
-            user.setLastLogin(new Date());
-        }
+//        if (user.getCreateTime() == null){
+//            user.setCreateTime(new Date());
+//        }
+//        if (user.getUpdateTime() == null){
+//            user.setUpdateTime(new Date());
+//        }
+//        if (user.getLastLogin() == null){
+//            user.setLastLogin(new Date());
+//        }
         SqlSession session = DBUtils.getSession();
         int id = -1;
         try {

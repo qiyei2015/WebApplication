@@ -1,5 +1,6 @@
 package com.qiyei.domain.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -46,15 +47,15 @@ public class User {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
     /**
      * 账号最后修改时间
      */
-    private Date updateTime;
+    private Timestamp updateTime;
     /**
      * 用户最后登录时间
      */
-    private Date lastLogin;
+    private Timestamp lastLogin;
     /**
      * 用户账号状态 0 正常 1 锁定 2 删除
      */
@@ -88,9 +89,9 @@ public class User {
         this.gender = gender;
         this.phone = phone;
         this.email = email;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.lastLogin = lastLogin;
+        this.createTime = new Timestamp(createTime.getTime());
+        this.updateTime = new Timestamp(updateTime.getTime());
+        this.lastLogin = new Timestamp(lastLogin.getTime());
         this.userStatus = userStatus;
         this.remark = remark;
         this.hobby = hobby;
@@ -169,27 +170,27 @@ public class User {
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
-    public Date getLastLogin() {
+    public Timestamp getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
@@ -219,9 +220,9 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", lastLogin=" + lastLogin +
+                ", createTime=" + (createTime == null ? "null" : createTime.getTime()) +
+                ", updateTime=" + (updateTime == null ? "null" : updateTime.getTime()) +
+                ", lastLogin=" + (lastLogin == null ? "null" : lastLogin.getTime()) +
                 ", userStatus=" + userStatus +
                 ", remark='" + remark + '\'' +
                 ", hobby='" + hobby + '\'' +

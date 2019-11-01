@@ -143,6 +143,13 @@ td {
     color: #666;
     font-size: 14px;
 }
+.profile_picture{
+    height: 100px;
+    width: 100px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+}
 
 .btn-red {
     margin: 20px 0px;

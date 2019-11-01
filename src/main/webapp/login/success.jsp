@@ -28,7 +28,7 @@
         <div class="content">
             <table align="center">
                 <tr>
-                    <td align="center"><img src="<%=imvPath%>"/></td>
+                    <td align="center"><img class="profile_picture" src="<%=imvPath%>"/></td>
                 </tr>
                 <tr>
                     <td align="center">欢迎<%=user.getNickName()%>,登录成功!</td>
