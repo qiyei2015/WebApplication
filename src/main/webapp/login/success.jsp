@@ -1,5 +1,8 @@
 <%@ page import="com.qiyei.common.CommonConstant" %>
-<%@ page import="com.qiyei.domain.bean.User" %><%--
+<%@ page import="com.qiyei.domain.bean.User" %>
+<%@ page import="java.util.Timer" %>
+<%@ page import="java.util.TimerTask" %>
+<%@ page import="java.io.IOException" %><%--
   Created by IntelliJ IDEA.
   User: daner
   Date: 2019/10/4
@@ -14,6 +17,8 @@
 </head>
 <body>
 <%
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + request.getContextPath() + "/";
     if (session.getAttribute(CommonConstant.KEY_USER ) != null){
       User user = (User) session.getAttribute(CommonConstant.KEY_USER);
       //获得绝对路径最后一个\的位置
@@ -36,6 +41,16 @@
             </table>
         </div>
     </div>
+    <script>
+        let i=2;
+        let time=setInterval(function(){
+            if(i==0){
+                //成功则跳转成功页面
+                window.location.href = "<%=basePath%>IndexServlet"
+            }
+            i--;
+        },1000)
+    </script>
     <%
     } else {
     %>

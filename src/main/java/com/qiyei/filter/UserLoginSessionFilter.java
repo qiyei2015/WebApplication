@@ -2,6 +2,7 @@ package com.qiyei.filter;
 
 import com.qiyei.common.CommonConstant;
 import com.qiyei.domain.bean.User;
+import com.qiyei.utils.LogUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import java.io.IOException;
  */
 public class UserLoginSessionFilter implements Filter {
 
+    private static final String TAG = UserLoginSessionFilter.class.getSimpleName();
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,6 +30,7 @@ public class UserLoginSessionFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         User user = (User) request.getSession().getAttribute(CommonConstant.KEY_USER);
+        LogUtils.println(TAG,"doFilter user:" + (user == null ? "null" : user.toString()));
         //未登录
         if (user == null){
             // 未登录，系统强制重定向至登录页面

@@ -9,17 +9,19 @@
 <%@ page import="com.qiyei.utils.CookieUtils" %>
 <%@ page import="com.qiyei.common.CommonConstant" %>
 <html>
-<head>
-    <title>用户管理中心登录页面</title>
-    <link rel="stylesheet" href="../lib/css/login.css">
-    <script type="text/javascript" src="../lib/js/jquery-1.4.2.js"></script>
-</head>
-<body>
 <%
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + request.getContextPath() + "/";
     System.out.println("basePath:" + basePath);
-
+%>
+<head>
+    <title>用户管理中心登录页面</title>
+    <!--此处css路径需配置层绝对路径，要不然首次启动找不到-->
+    <link rel="stylesheet" href="<%=basePath%>lib/css/login.css">
+    <script type="text/javascript" src="<%=basePath%>lib/js/jquery-1.4.2.js"></script>
+</head>
+<body>
+<%
     String userName = "";
     //获取cookies
     Cookie[] cookies = request.getCookies();

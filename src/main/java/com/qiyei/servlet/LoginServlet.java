@@ -59,6 +59,7 @@ public class LoginServlet extends HttpServlet {
                 //将用户信息保存到session中
                 request.getSession().setAttribute(CommonConstant.KEY_USER,user);
                 jsonObject = new JSONObject("{flag:true}");
+                LogUtils.println(TAG,username + " login success ");
                break;
             }
         }
