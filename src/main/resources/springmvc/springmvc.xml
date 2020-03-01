@@ -5,11 +5,11 @@
 
     <!--配置HandlerMapping-->
     <bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-    <property name="mappings">
-    <props>
-    <prop key="/test">MyHandler</prop>
-    </props>
-    </property>
+        <property name="mappings">
+            <props>
+                <prop key="/test">MyHandler</prop>
+            </props>
+        </property>
     </bean>
 
     <bean id="MyHandler" class="com.qiyei.springmvc.demo1.MyHandler" />
