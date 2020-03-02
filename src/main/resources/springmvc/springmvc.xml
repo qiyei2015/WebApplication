@@ -14,6 +14,7 @@
 
     <bean id="MyHandler" class="com.qiyei.springmvc.demo1.MyHandler" />
 
+    <!--配置视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/springmvc/"></property>
         <property name="suffix" value=".jsp"></property>
