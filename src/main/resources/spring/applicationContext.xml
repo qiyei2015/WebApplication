@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置包自动扫描路径-->
+    <context:component-scan base-package="com.qiyei"/>
 
     <bean id="userService" class="com.qiyei.springdemo.demo1.UserServiceImpl">
         <property name="name" value="张三"/>
@@ -26,6 +30,16 @@
     <bean id="MyBeanPostProcessor" class="com.qiyei.springdemo.demo3.MyBeanPostProcessor"/>
     <bean id="userDao" class="com.qiyei.springdemo.demo3.UserDaoImpl"/>
 
-
+    <!--配置数据库-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/web_application?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="510726"/>
+    </bean>
+    <!--配置jdbcTemplate-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
 </beans>
