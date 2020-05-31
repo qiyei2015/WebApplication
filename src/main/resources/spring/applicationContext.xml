@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--配置包自动扫描路径-->
     <context:component-scan base-package="com.qiyei"/>
@@ -49,5 +50,25 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!--声明Dao-->
+    <bean id="bookDao" class="com.qiyei.springtransaction.dao.BookDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 1、通过事务通知的模式实现事务  事务通知：the transactional advice (what 'happens'; see the <aop:advisor/> bean below-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- the transactional semantics... -->
+        <tx:attributes>
+            <!-- 以find开头的所有方法都为只读事务：all methods starting with 'get' are read-only -->
+            <tx:method name="find*" read-only="true"/>
+            <!-- 其它方法使用默认事务设置：other methods use the default transaction settings (see below) -->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 确保上述事务通知对定义在Dao接口中的方法都起作用( ensure that the above transactional advice runs for any execution of an operation defined by the FooService interface) -->
+    <aop:config>
+        <aop:pointcut id="bookDaoOperation" expression="execution(* com.qiyei.springtransaction.dao.BookDao.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="bookDaoOperation"/>
+    </aop:config>
 
 </beans>
