@@ -71,4 +71,7 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="bookDaoOperation"/>
     </aop:config>
 
+    <!-- 2、注释模式事务：启动使用注解实现声明式事务管理的支持   -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
 </beans>
